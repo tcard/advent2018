@@ -1,0 +1,112 @@
+// --- Part Two ---
+
+// Amidst the chaos, you notice that exactly one claim doesn't overlap by even a
+// single square inch of fabric with any other claim. If you can somehow draw
+// attention to it, maybe the Elves will be able to make Santa's suit after all!
+
+// For example, in the claims above, only claim 3 is intact after all claims are
+// made.
+
+// What is the ID of the only claim that doesn't overlap?
+
+import io
+import regex
+
+defclass Claim
+  val id
+  val top
+  val left
+  val width
+  val height
+  var overlaps is Bool = false
+end
+
+defclass Fabric
+  val claims
+  val width
+end
+
+def (== Fabric) new(width: width, height: height)
+  Fabric new(
+    claims: List new(fill: nothing, size: width * height),
+    width: width)
+end
+
+def (this is Fabric) claims(top: top, left: left)
+  val i = top * (this width) + left
+  var claims = (this claims)[i]
+  if claims == nothing then
+    claims = List new
+    (this claims)[i] = claims
+  end
+  claims
+end
+
+def (this is Fabric) add(claim is Claim)
+  for t in claim top until(claim top + claim height) do
+    for l in claim left until(claim left + claim width)  do
+      val claimsHere = this claims(top: t, left: l)
+      if claimsHere count > 0 then
+        claim overlaps = true
+        if claimsHere count == 1 then
+          claimsHere[0] overlaps = true
+        end
+      end
+
+      claimsHere add(claim)
+    end
+  end
+end
+
+val stdin = open("/dev/stdin")
+
+def getLine()
+  stdin readLine
+end
+
+def (== Int) parse(s is String)
+  var all = 0
+  for c in s do
+    val i = match c
+      case "0" then 0
+      case "1" then 1
+      case "2" then 2
+      case "3" then 3
+      case "4" then 4
+      case "5" then 5
+      case "6" then 6
+      case "7" then 7
+      case "8" then 8
+      case "9" then 9
+    end
+    all = all * 10 + i
+  end
+  all
+end
+
+val r = regex("#([0-9]+) @ ([0-9]+),([0-9]+): ([0-9]+)x([0-9]+)")
+
+val fabric = Fabric new(width: 1000, height: 1000)
+val claims = List new
+
+while true do
+  val line = match getLine()
+    case is Nothing then break
+    case x then x
+  end
+  val groups = line find(r) groups
+  val claim = Claim new(
+    id: groups[1],
+    left: Int parse(groups[2]),
+    top: Int parse(groups[3]),
+    width: Int parse(groups[4]),
+    height: Int parse(groups[5]))
+  fabric add(claim)
+  claims add(claim)
+end
+
+for claim in claims do
+  if not(claim overlaps) then
+    print(claim id)
+  end
+end
