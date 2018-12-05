@@ -7,3 +7,4 @@ Every day, a new language!
 1. [Python](https://github.com/tcard/advent2018/tree/master/1)
 2. [Haskell](https://github.com/tcard/advent2018/tree/master/2)
 3. [Magpie](https://github.com/tcard/advent2018/tree/master/3)
+4. [Rust](https://github.com/tcard/advent2018/tree/master/4)
