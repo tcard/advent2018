@@ -9,3 +9,9 @@ Every day, a new language!
 3. [Magpie](https://github.com/tcard/advent2018/tree/master/3)
 4. [Rust](https://github.com/tcard/advent2018/tree/master/4)
 5. [Ruby](https://github.com/tcard/advent2018/tree/master/5)
+6. _Not done yet._
+7. _Not done yet._
+8. _Not done yet._
+9. _Not done yet._
+10. _Not done yet._
+11. [Go](https://github.com/tcard/advent2018/tree/master/11)
