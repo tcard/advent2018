@@ -15,3 +15,4 @@ Every day, a new language!
 9. _Not done yet._
 10. _Not done yet._
 11. [Go](https://github.com/tcard/advent2018/tree/master/11)
+12. [C](https://github.com/tcard/advent2018/tree/master/12)
